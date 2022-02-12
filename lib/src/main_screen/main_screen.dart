@@ -25,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
               Container(
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/sky.jpg'),
+                      image: AssetImage('assets/images/clear_sky.jpg'),
                       fit: BoxFit.cover,
                     )),
               ),
