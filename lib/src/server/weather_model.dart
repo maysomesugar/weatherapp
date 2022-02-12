@@ -16,11 +16,13 @@ class WeatherModel {
   late Map<String, dynamic> _main;
   late int _visibility;
   late Map<String, dynamic> _wind;
-
-   String get main => _weather['main'];
-   String get description => _weather['main'];
-   Image get icon => Image.network(
-       'https://openweathermap.org/img/wn/${_weather['icon']}].png');
+//
+//
+//
+  String get main => _weather['main'];
+  String get description => _weather['main'];
+  Image get icon => Image.network(
+      'https://openweathermap.org/img/wn/${_weather['icon']}].png');
 
   double get temperature {
     return KelvinToCelsium(_main['temp']);
@@ -46,9 +48,10 @@ class WeatherModel {
       _visibility = jsonData['visibility'];
       _wind = jsonData['wind'];
     } catch (e) {
-      throw(e);
+      throw (e);
     }
   }
+  
 }
 
 //-----Needed parameters
