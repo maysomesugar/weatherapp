@@ -3,7 +3,7 @@ import 'package:weatherapp/src/exporters/styles_exporter.dart';
 
 Widget additionalWidgetPartGenerator(IconData icon, String text){
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: 20),
+    margin: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
       children: [
         Container(

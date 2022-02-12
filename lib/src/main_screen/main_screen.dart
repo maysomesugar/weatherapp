@@ -20,16 +20,17 @@ class _MainScreenState extends State<MainScreen> {
           appBar: AppBar(
             toolbarHeight: 0,
           ),
-          body: Center(
-            child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('assets/images/sky.jpg'),
-                fit: BoxFit.cover,
-              )),
-              height: 1000,
-              child: FirstMainScreen(),
-            ),
+          body: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/sky.jpg'),
+                      fit: BoxFit.cover,
+                    )),
+              ),
+              const FirstMainScreen()
+            ],
           ),
         ));
   }

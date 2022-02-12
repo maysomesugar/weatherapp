@@ -12,43 +12,30 @@ class FirstMainScreen extends StatefulWidget {
 class _FirstMainScreenState extends State<FirstMainScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      title: 'weather_app',
-      home: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 0,
-        ),
-        body: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(bottom: 40),
-                  child: Text(
-                    'weather status',
-                    style: mainSmallFontStyle,
-                  ),
-                ),
-                Container(
-                    margin: EdgeInsets.only(bottom: 80),
-                    child: temperatureBlock()),
-                Container(
-                  margin: EdgeInsets.only(bottom: 20),
-                  child: additionalInfoBlock(),
-                ),
-                Container(
-                  child: Text(
-                    'user country',
-                    style: mainSmallFontStyle,
-                    ),
-                  ),
-              ],
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 40),
+            child: Text(
+              'weather status',
+              style: mainSmallFontStyle,
             ),
           ),
-        ),
+          Container(
+              margin: const EdgeInsets.only(bottom: 80),
+              child: temperatureBlock()),
+          Container(
+            margin: const EdgeInsets.only(bottom: 20),
+            child: additionalInfoBlock(),
+          ),
+          Container(
+            child: Text(
+              'user country',
+              style: mainSmallFontStyle,
+            ),
+          ),
+        ],
     );
   }
 }
