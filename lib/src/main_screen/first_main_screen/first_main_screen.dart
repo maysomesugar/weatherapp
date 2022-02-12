@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:weatherapp/src/exporters/widgets_exporter.dart';
 import 'package:weatherapp/src/exporters/styles_exporter.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class FirstMainScreen extends StatefulWidget {
+  const FirstMainScreen({Key? key}) : super(key: key);
 
   @override
-  _MainScreenState createState() => _MainScreenState();
+  _FirstMainScreenState createState() => _FirstMainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _FirstMainScreenState extends State<FirstMainScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,14 +22,7 @@ class _MainScreenState extends State<MainScreen> {
           toolbarHeight: 0,
         ),
         body: Center(
-          child: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/sky.jpg'),
-                  fit: BoxFit.cover,
-                )),
-            height: 1000,
-            child: Column(
+          child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
@@ -56,7 +49,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
         ),
-      ),
     );
   }
 }
