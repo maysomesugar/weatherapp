@@ -18,7 +18,7 @@ Widget temperatureBlock() {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 90, left: 10),
+            margin: const EdgeInsets.only(top: 90, left: 10),
             child: Text('C',
                 style: mainMiddleFontStyle,
             ),
