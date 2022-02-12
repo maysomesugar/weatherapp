@@ -25,9 +25,9 @@ class _MainScreenState extends State<MainScreen> {
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage('assets/images/sky.jpg'),
-              fit: BoxFit.cover,
-            )),
+                  image: AssetImage('assets/images/sky.jpg'),
+                  fit: BoxFit.cover,
+                )),
             height: 1000,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
                   child: Text(
                     'weather status',
                     style: mainSmallFontStyle,
-                    ),
+                  ),
                 ),
                 Container(
                     margin: EdgeInsets.only(bottom: 80),
@@ -49,9 +49,9 @@ class _MainScreenState extends State<MainScreen> {
                 Container(
                   child: Text(
                     'user country',
-                    style: mainSmallFontStyle
+                    style: mainSmallFontStyle,
+                    ),
                   ),
-                ),
               ],
             ),
           ),

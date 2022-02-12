@@ -1,0 +1,1 @@
+export 'package:weatherapp/src/styles/font_styles.dart';

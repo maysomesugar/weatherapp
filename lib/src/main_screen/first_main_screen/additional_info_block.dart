@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/src/exporters/styles_exporter.dart';
 
 Widget additionalWidgetPartGenerator(IconData icon, String text){
   return Container(
@@ -14,10 +15,7 @@ Widget additionalWidgetPartGenerator(IconData icon, String text){
         Container(
           child: Text(
             text,
-            style: TextStyle(
-              fontFamily: 'Montserrat',
-              fontSize: 12,
-            ),
+            style: mainSmallFontStyle,
           ),
         ),
       ],
