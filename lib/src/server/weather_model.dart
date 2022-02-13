@@ -1,55 +1,72 @@
-import 'dart:convert';
-import 'package:weatherapp/src/tools/convert_temperature.dart';
-import 'package:flutter/material.dart';
-import 'package:weather/weather.dart';
-
-WeatherModel modelFromJson(Map<String, dynamic> jsonData) {
-  try {
-    return WeatherModel.fromJson(jsonData);
-  } catch (e) {
-    throw (e);
-  }
-}
-
 class WeatherModel {
-  late Map<String, dynamic> _weather;
-  late Map<String, dynamic> _main;
-  late int _visibility;
-  late Map<String, dynamic> _wind;
+  int? _temperature;
+  int? _clouds;
+  double? _windSpeed;
+  String? _weatherDescription;
+  String? _icon;
+  String? _countryName;
+  String? _cityName;
 
-   String get main => _weather['main'];
-   String get description => _weather['main'];
-   Image get icon => Image.network(
-       'https://openweathermap.org/img/wn/${_weather['icon']}].png');
+  int? get temperature => _temperature;
+  int? get clouds => _clouds;
+  double? get windSpeed => _windSpeed;
+  String? get weatherDescription => _weatherDescription;
+  String? get icon{
+    return "http://openweathermap.org/img/w/$_icon.ico";
+  }
+  String? get countryName => _countryName;
+  String? get cityName => _cityName;
 
-  double get temperature {
-    return KelvinToCelsium(_main['temp']);
+  WeatherModel(){
+    _temperature = 0;
+    _clouds = 0;
+    _windSpeed = 0;
+    _weatherDescription = '';
+    _icon = '';
+    _countryName = '';
+    _cityName = '';
   }
 
-  double get feelsLikeTemperature {
-    return KelvinToCelsium(_main['feels_like']);
+  WeatherModel.manually({temperature = 0, clouds = 0, windSpeed = 0,
+    weatherDescription = '', icon = '', countryName = '', cityName = ''}){
+    _temperature = temperature;
+    _clouds = clouds;
+    _windSpeed = windSpeed;
+    _weatherDescription = weatherDescription;
+    _icon = icon;
+    _countryName = countryName;
+    _cityName = cityName;
   }
 
-  int get pressure => _main['pressure'];
-  int get hymidity => _main['humidity'];
+  WeatherModel.byJson(Map<String, dynamic> jsonData){
+    try{
+      _temperature = jsonData['main']['temp'];
+      _clouds = jsonData['clouds']['all'];
+      _windSpeed = jsonData['wind']['speed'];
 
-  int get visibility => _visibility;
+      //=============================
 
-  double get windSpeed => _wind['speed'];
-  int get degrees => _wind['deg'];
+      var tempData = jsonData['weather'][0] as Map<String, dynamic>;
 
-  WeatherModel.fromJson(Map<String, dynamic> jsonData) {
-    try {
-      _visibility = jsonData['visibility'];
-      _weather = jsonData['weather'][0] as Map<String, dynamic>;
-      _main = jsonData['main'];
-      _visibility = jsonData['visibility'];
-      _wind = jsonData['wind'];
-    } catch (e) {
-      throw(e);
+      _weatherDescription = tempData['description'];
+      _icon = tempData['icon'];
+
+      //=============================
+
+      _countryName = jsonData['sys']['country'];
+      _cityName = jsonData['name'];
+    }
+    catch(exception){
+      WeatherModel();
+      throw exception;
     }
   }
 }
+//==============================================
+
+//==============================================
+
+
 
 //-----Needed parameters
 // icon -> https://openweathermap.org/img/wn/${['weather']['icon']}].png
@@ -85,9 +102,9 @@ class WeatherModel {
 //           "deg":182,
 //           "gust":15.56},
 // 000---"name":"Kamianske",
-// 
-// 
-// 
+//
+//
+//
 // ---"clouds":{"all":100},
 // ----"base":"stations",
 // ----"dt":1644229029,

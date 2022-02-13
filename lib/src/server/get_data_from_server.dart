@@ -1,9 +1,5 @@
 import 'package:weather/weather.dart';
 
-import 'weather_model.dart';
-
-
-
 //hardcode
 var latitude = 48.5188;
 var longitude = 34.5751;
@@ -13,11 +9,10 @@ WeatherFactory _wf = WeatherFactory(
   language: Language.RUSSIAN,
 );
 
-Future<WeatherModel> getWeather() async {
+Future getWeatherFromDB() async {
   try {
-    Weather currentWeather =
-        await _wf.currentWeatherByLocation(latitude, longitude);
-    return modelFromJson(currentWeather.toJson()!);
+    Weather weather = await _wf.currentWeatherByLocation(latitude, longitude);
+    return weather;
   } catch (e) {
     throw e;
   }
