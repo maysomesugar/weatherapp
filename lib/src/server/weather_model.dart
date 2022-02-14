@@ -27,34 +27,34 @@ class WeatherModel {
     _cityName = '';
   }
 
-  WeatherModel.manually({temperature = 0, clouds = 0, windSpeed = 0,
-    weatherDescription = '', icon = '', countryName = '', cityName = ''}){
-    _temperature = temperature;
-    _clouds = clouds;
-    _windSpeed = windSpeed;
-    _weatherDescription = weatherDescription;
-    _icon = icon;
-    _countryName = countryName;
-    _cityName = cityName;
-  }
+  // WeatherModel.manually({temperature = 0, clouds = 0, windSpeed = 0,
+  //   weatherDescription = '', icon = '', countryName = '', cityName = ''}){
+  //   _temperature = temperature;
+  //   _clouds = clouds;
+  //   _windSpeed = windSpeed;
+  //   _weatherDescription = weatherDescription;
+  //   _icon = icon;
+  //   _countryName = countryName;
+  //   _cityName = cityName;
+  // }
 
   WeatherModel.byJson(Map<String, dynamic> jsonData){
     try{
-      _temperature = jsonData['main']['temp'];
-      _clouds = jsonData['clouds']['all'];
+      _temperature = int.parse(jsonData['main']['temp']);
+      _clouds = int.parse(jsonData['clouds']['all']);
       _windSpeed = jsonData['wind']['speed'];
 
       //=============================
 
       var tempData = jsonData['weather'][0] as Map<String, dynamic>;
 
-      _weatherDescription = tempData['description'];
-      _icon = tempData['icon'];
+      _weatherDescription = tempData['description'].toString();
+      _icon = tempData['icon'].toString();
 
       //=============================
 
-      _countryName = jsonData['sys']['country'];
-      _cityName = jsonData['name'];
+      _countryName = jsonData['sys']['country'].toString();
+      _cityName = jsonData['name'].toString();
     }
     catch(exception){
       WeatherModel();

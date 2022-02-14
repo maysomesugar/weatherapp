@@ -15,7 +15,7 @@ class FirstMainScreen extends StatefulWidget {
 
 class _FirstMainScreenState extends State<FirstMainScreen> {
   void  getWeather() async{
-    var jsonData = jsonDecode(await getWeatherFromDB());
+    Map<String, dynamic> jsonData = (await getWeatherFromDB()).toJson();
 
     setState(() {
       currentWeather = WeatherModel.byJson(jsonData);
@@ -24,27 +24,27 @@ class _FirstMainScreenState extends State<FirstMainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    getWeather();
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 40),
             child: Text(
-              '${currentWeather.weatherDescription}',
-              // 'asda',
+              '1',
               style: mainSmallFontStyle,
             ),
           ),
           Container(
               margin: const EdgeInsets.only(bottom: 80),
-              child: temperatureBlock(currentWeather.temperature)),
+              child: temperatureBlock(1)),
           Container(
             margin: const EdgeInsets.only(bottom: 20),
             child: additionalInfoBlock(),
           ),
           Container(
             child: Text(
-              'user country',
+              '1',
               style: mainSmallFontStyle,
             ),
           ),
