@@ -23,16 +23,16 @@ Widget additionalWidgetPartGenerator(IconData icon, String text){
   );
 }
 
-Widget additionalInfoBlock({required String snow, required String clouds, required double wind}){
+Widget additionalInfoBlock({required int humidity, required int pressure, required double wind}){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       const SizedBox(
         width: 60,
       ),
-      additionalWidgetPartGenerator(Icons.ac_unit_rounded, snow),
-      additionalWidgetPartGenerator(Icons.cloud, clouds),
-      additionalWidgetPartGenerator(Icons.air, wind.toString()),
+      additionalWidgetPartGenerator(Icons.ac_unit_rounded, '${humidity.toString()} %'),
+      additionalWidgetPartGenerator(Icons.cloud, '${pressure.toString()} гПа'),
+      additionalWidgetPartGenerator(Icons.air, '${wind.toString()} м/с'),
       const SizedBox(
         width: 60,
       ),

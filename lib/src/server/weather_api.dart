@@ -1,5 +1,3 @@
-import 'package:weatherapp/src/server/weather_model.dart';
-import 'package:weatherapp/src/server/get_data_from_server.dart';
 import 'package:weather/weather.dart';
 
 Future<Weather> getWeather() async {
@@ -22,13 +20,10 @@ Future<Weather> getWeather() async {
   return weather;
 }
 
-
-
-
- Future <Map<String, dynamic>> getWeatherMap()async {
-   var weather = await getWeather()..toJson();
+Future<Map<String, dynamic>> getWeatherMap() async {
+  var weather = await getWeather()
+    ..toJson();
   var data = weather.toJson();
-   Map<String, dynamic> weatherData = {'main' : data?['main']['main']};
-   print(weatherData);
-   return weatherData;
- }
+  Map<String, dynamic> weatherData = {'main': data?['main']['main']};
+  return weatherData;
+}
