@@ -12,7 +12,7 @@ WeatherFactory _wf = WeatherFactory(
 Future getWeatherFromDB() async {
   try {
     Weather weather = await _wf.currentWeatherByLocation(latitude, longitude);
-    return weather;
+    return weather.toJson();
   } catch (e) {
     throw e;
   }

@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:weatherapp/src/exporters/widgets_exporter.dart';
 import 'package:weatherapp/src/exporters/styles_exporter.dart';
+//
 import 'package:weatherapp/src/server/weather_model.dart';
-
-WeatherModel currentWeather = WeatherModel();
+import 'package:weatherapp/src/server/weather_model_old.dart';
 
 class FirstMainScreen extends StatefulWidget {
   const FirstMainScreen({Key? key}) : super(key: key);
@@ -14,41 +14,48 @@ class FirstMainScreen extends StatefulWidget {
 }
 
 class _FirstMainScreenState extends State<FirstMainScreen> {
-  void  getWeather() async{
-    Map<String, dynamic> jsonData = (await getWeatherFromDB()).toJson();
+  WeatherModel_old currentWeather = WeatherModel_old();
 
+  void getWeather() async {
+    // Map<String, dynamic> jsonData = (await getWeatherFromDB()).toJson();
+    currentWeather = WeatherModel_old.fromJson(await getWeatherFromDB());
     setState(() {
-      currentWeather = WeatherModel.byJson(jsonData);
+    print('setState');
     });
   }
-
+  @override
+  void initState() {
+    getWeather();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    getWeather();
+    // getWeather();
     return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 40),
-            child: Text(
-              '1',
-              style: mainSmallFontStyle,
-            ),
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 40),
+          child: Text(
+            currentWeather.main,
+            style: mainSmallFontStyle,
           ),
-          Container(
-              margin: const EdgeInsets.only(bottom: 80),
-              child: temperatureBlock(1)),
-          Container(
-            margin: const EdgeInsets.only(bottom: 20),
-            child: additionalInfoBlock(),
+        ),
+        Container(
+            margin: const EdgeInsets.only(bottom: 80),
+            child: temperatureBlock(currentWeather.temperature)),
+        Container(
+          margin: const EdgeInsets.only(bottom: 20),
+          child: additionalInfoBlock(snow: currentWeather.description,clouds: currentWeather.description ,wind: currentWeather.windSpeed  ),
+        ),
+        Container(
+          child: Text(
+            '${currentWeather.cityName}, ${currentWeather.countryName}',
+            style: mainSmallFontStyle,
           ),
-          Container(
-            child: Text(
-              '1',
-              style: mainSmallFontStyle,
-            ),
-          ),
-        ],
+        ),
+      ],
     );
   }
 }

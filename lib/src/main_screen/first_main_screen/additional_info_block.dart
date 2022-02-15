@@ -23,16 +23,16 @@ Widget additionalWidgetPartGenerator(IconData icon, String text){
   );
 }
 
-Widget additionalInfoBlock(){
+Widget additionalInfoBlock({required String snow, required String clouds, required double wind}){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       const SizedBox(
         width: 60,
       ),
-      additionalWidgetPartGenerator(Icons.ac_unit_rounded, 'some_text'),
-      additionalWidgetPartGenerator(Icons.cloud, 'some_text'),
-      additionalWidgetPartGenerator(Icons.air, 'some_text'),
+      additionalWidgetPartGenerator(Icons.ac_unit_rounded, snow),
+      additionalWidgetPartGenerator(Icons.cloud, clouds),
+      additionalWidgetPartGenerator(Icons.air, wind.toString()),
       const SizedBox(
         width: 60,
       ),
