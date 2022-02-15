@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:weatherapp/src/exporters/styles_exporter.dart';
 
-Widget temperatureBlock() {
+Widget temperatureBlock(int? temperature) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Text(
-        '13',
+        '$temperature',
         style: mainBigFontStyle,
       ),
       Stack(

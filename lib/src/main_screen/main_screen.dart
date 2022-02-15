@@ -27,7 +27,8 @@ class _MainScreenState extends State<MainScreen> {
                     image: DecorationImage(
                       image: AssetImage('assets/images/clear_sky.jpg'),
                       fit: BoxFit.cover,
-                    )),
+                    )
+                ),
               ),
               const FirstMainScreen()
             ],
