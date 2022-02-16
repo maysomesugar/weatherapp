@@ -15,9 +15,10 @@ class _FirstMainScreenState extends State<FirstMainScreen> {
 
   void getWeather() async {
     // Map<String, dynamic> jsonData = (await getWeatherFromDB()).toJson();
-    currentWeather = WeatherModel.byJson(await getWeatherFromDB());
+    var tempWeather = WeatherModel.byJson(await getWeatherFromDB());
     setState(() {
-      print('setState');
+      currentWeather = tempWeather;
+      print(currentWeather.main?['temp']);
     });
   }
 
@@ -43,7 +44,7 @@ class _FirstMainScreenState extends State<FirstMainScreen> {
         ),
         Container(
             margin: const EdgeInsets.only(bottom: 80),
-            child: temperatureBlock(temperature: (currentWeather.main?['temp'] / 32).round(), currentWeatherIcon: currentWeather.weather?['icon'])),
+            child: temperatureBlock(temperature: (currentWeather.main?['temp'] - 273.15).round(), currentWeatherIcon: currentWeather.weather?['icon'])),
         Container(
           margin: const EdgeInsets.only(bottom: 20),
           child: additionalInfoBlock(humidity: currentWeather.main?['humidity'], pressure: currentWeather.main?['pressure'], wind: currentWeather.wind?['speed']),
