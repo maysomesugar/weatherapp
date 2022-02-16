@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
 import 'package:weatherapp/src/tools/convert_temperature.dart';
+import 'package:flutter_weather_icons/flutter_weather_icons.dart';
 
 class WeatherModel {
   Map<String, dynamic>? _weather;
@@ -12,20 +14,19 @@ class WeatherModel {
 
   //=======
 
-  String? get mainStatuts => _weather?['main'];
-  String? get description => _weather?['description'];
-  //Icon
+  String get mainStatuts => _weather?['main'] ?? 'unknown';
+  String get description => _weather?['description'] ?? 'unknown';
+  IconData get icon => getIconFromCode(_weather?['icon'] ?? '');
+  int get temperature => KelvinToCelsium(_main?['temp']).round();
+  int get feelsLikeTemperature => KelvinToCelsium(_main?['feels_like']).round();
+  int get pressure => _main?['pressure'] ?? 0;
+  int get humidity => _main?['humidity'] ?? 0;
 
-  int? get temperature => KelvinToCelsium(_main?['temp']).round();
-  int? get feelsLikeTemperature =>  KelvinToCelsium(_main?['feels_like']).round();
-  int? get pressure => _main?['pressure'];
-  int? get humidity => _main?['humidity'];
+  double get windSpeed => _wind?['speed'] ?? 0;
+  int get windDegrees => _wind?['deg'] ?? 0 ;
 
-  double? get windSpeed => _wind?['speed'];
-  int? get windDegrees => _wind?['deg'];
-
-  String? get countryName => _countryName;
-  String? get cityName => _cityName;
+  String get countryName => _countryName ?? 'unknown location';
+  String get cityName => _cityName ?? '';
   //constructors
 
   WeatherModel() {
@@ -60,6 +61,17 @@ class WeatherModel {
       WeatherModel();
       throw exception;
     }
+  }
+  IconData getIconFromCode(String code){
+    IconData tempIcon;
+
+    if(code == '01d'){
+      tempIcon = WeatherIcons.wiDaySunny;
+    }
+    else {
+      tempIcon = WeatherIcons.wiDaySunny;
+    }
+    return tempIcon;
   }
 
 // WeatherModel.manually({temperature = 0, clouds = 0, windSpeed = 0,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weatherapp/src/exporters/widgets_exporter.dart';
 import 'package:weatherapp/src/exporters/styles_exporter.dart';
 import 'package:weatherapp/src/server/weather_model.dart';
+import 'package:weatherapp/src/tools/convert_temperature.dart';
 
 class FirstMainScreen extends StatefulWidget {
   const FirstMainScreen({Key? key}) : super(key: key);
@@ -34,16 +35,23 @@ class _FirstMainScreenState extends State<FirstMainScreen> {
         Container(
           margin: const EdgeInsets.only(bottom: 40),
           child: Text(
-            currentWeather.weather?['description'],
+            FirstSymbolToUpperCase(currentWeather.description),
             style: mainSmallFontStyle,
           ),
         ),
         Container(
             margin: const EdgeInsets.only(bottom: 80),
-            child: temperatureBlock(temperature: (currentWeather.main?['temp'] - 273.15).round(), currentWeatherIcon: currentWeather.weather?['icon'])),
+            child: temperatureBlock(
+              temperature: currentWeather.temperature,
+              currentWeatherIcon: currentWeather.icon,
+            )),
         Container(
           margin: const EdgeInsets.only(bottom: 20),
-          child: additionalInfoBlock(humidity: currentWeather.main?['humidity'], pressure: currentWeather.main?['pressure'], wind: currentWeather.wind?['speed']),
+          child: additionalInfoBlock(
+            humidity: currentWeather.humidity,
+            pressure: currentWeather.pressure,
+            wind: currentWeather.windSpeed,
+          ),
         ),
         Container(
           child: Text(
@@ -55,11 +63,3 @@ class _FirstMainScreenState extends State<FirstMainScreen> {
     );
   }
 }
-
-// Container(
-// decoration: BoxDecoration(
-// color: Colors.red,
-// ),
-// height: 100,
-// width: 100,
-// )
