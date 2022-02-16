@@ -20,6 +20,7 @@ Future<Weather> getWeather() async {
   return weather;
 }
 
+
 Future<Map<String, dynamic>> getWeatherMap() async {
   var weather = await getWeather()
     ..toJson();
