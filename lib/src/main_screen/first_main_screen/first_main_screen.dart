@@ -24,7 +24,6 @@ class _FirstMainScreenState extends State<FirstMainScreen> {
   @override
   void initState() {
     getWeather();
-    // TODO: implement initState
     super.initState();
   }
 

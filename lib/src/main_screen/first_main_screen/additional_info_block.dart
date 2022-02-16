@@ -30,7 +30,7 @@ Widget additionalInfoBlock({required int humidity, required int pressure, requir
       const SizedBox(
         width: 60,
       ),
-      additionalWidgetPartGenerator(Icons.ac_unit_rounded, '${humidity.toString()} %'),
+      additionalWidgetPartGenerator(Icons.opacity, '${humidity.toString()} %'),
       additionalWidgetPartGenerator(Icons.cloud, '${pressure.toString()} гПа'),
       additionalWidgetPartGenerator(Icons.air, '${wind.toString()} м/с'),
       const SizedBox(

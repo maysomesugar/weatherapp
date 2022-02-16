@@ -1,3 +1,6 @@
+import 'package:weather/weather.dart';
+import 'package:weatherapp/src/tools/convert_temperature.dart';
+
 class WeatherModel {
   Map<String, dynamic>? _weather;
   Map<String, dynamic>? _main;
@@ -8,12 +11,25 @@ class WeatherModel {
 
   //getters
 
-  Map<String, dynamic>? get weather => _weather;
+  Map<String, dynamic>? get weather => _weather;//?
   Map<String, dynamic>? get main => _main;
   Map<String, dynamic>? get wind => _wind;
   int? get clouds => _clouds;
   String? get countryName => _countryName;
   String? get cityName => _cityName;
+  //=======
+  
+  String? get mainStatuts => _weather?['main'];
+  String? get description => _weather?['description'];
+  //Icon
+
+  int? get temperature => DoubleToInt(KelvinToCelsium(_main?['temp']));
+  int? get feelsLikeTemperature => DoubleToInt(KelvinToCelsium(_main?['feels_like']));
+  int? get pressure => _main?['pressure'];
+  int? get humidity => _main?['humidity'];
+
+  double? get windSpeed => _wind?['speed'];
+  int? get windDegrees => _wind?['deg'];
 
   //constructors
 
@@ -46,7 +62,6 @@ class WeatherModel {
       _clouds = jsonData['clouds']['all'];
       _cityName = jsonData['name'];
       _countryName = jsonData['sys']['country'];
-
       print(_weather);
     }
     catch(exception){
@@ -67,3 +82,12 @@ class WeatherModel {
 //   _cityName = cityName;
 // }
 }
+
+//TODO:
+/*
+Не удобно работать с классом, изза чего в виджетах получаются длиннае строки с выборкой данных
+-нужно сделать пару основных приватных полей и геттерами из них изымать нужные данные
+
+
+
+*/

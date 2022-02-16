@@ -7,3 +7,7 @@ int DoubleToInt(double number){
   
   return number ~/1;
 }
+
+String FirstSymbolToUpperCase(String lowerCaseString){
+  return lowerCaseString.split('').first.toUpperCase()+lowerCaseString.split('').skip(1).join('');
+}
