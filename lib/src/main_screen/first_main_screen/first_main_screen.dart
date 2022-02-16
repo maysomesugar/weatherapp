@@ -14,11 +14,9 @@ class _FirstMainScreenState extends State<FirstMainScreen> {
   WeatherModel currentWeather = WeatherModel();
 
   void getWeather() async {
-    // Map<String, dynamic> jsonData = (await getWeatherFromDB()).toJson();
     var tempWeather = WeatherModel.byJson(await getWeatherFromDB());
     setState(() {
       currentWeather = tempWeather;
-      print(currentWeather.main?['temp']);
     });
   }
 
@@ -30,7 +28,6 @@ class _FirstMainScreenState extends State<FirstMainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // getWeather();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

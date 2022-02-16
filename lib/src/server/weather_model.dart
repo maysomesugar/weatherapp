@@ -5,7 +5,6 @@ class WeatherModel {
   Map<String, dynamic>? _weather;
   Map<String, dynamic>? _main;
   Map<String, dynamic>? _wind;
-  int? _clouds;
   String? _cityName;
   String? _countryName;
 
@@ -14,7 +13,6 @@ class WeatherModel {
   Map<String, dynamic>? get weather => _weather;//?
   Map<String, dynamic>? get main => _main;
   Map<String, dynamic>? get wind => _wind;
-  int? get clouds => _clouds;
   String? get countryName => _countryName;
   String? get cityName => _cityName;
   //=======
@@ -49,7 +47,6 @@ class WeatherModel {
       'speed': 7.87,
       'deg': 182,
     };
-    _clouds = 0;
     _countryName = '';
     _cityName = '';
   }
@@ -59,10 +56,8 @@ class WeatherModel {
       _main = jsonData['main'];
       _weather = jsonData['weather'][0] as Map<String, dynamic>;
       _wind = jsonData['wind'];
-      _clouds = jsonData['clouds']['all'];
       _cityName = jsonData['name'];
       _countryName = jsonData['sys']['country'];
-      print(_weather);
     }
     catch(exception){
       print(exception);
