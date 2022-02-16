@@ -10,28 +10,25 @@ class WeatherModel {
 
   //getters
 
-  Map<String, dynamic>? get weather => _weather;//?
-  Map<String, dynamic>? get main => _main;
-  Map<String, dynamic>? get wind => _wind;
-  String? get countryName => _countryName;
-  String? get cityName => _cityName;
   //=======
-  
+
   String? get mainStatuts => _weather?['main'];
   String? get description => _weather?['description'];
   //Icon
 
-  int? get temperature => DoubleToInt(KelvinToCelsium(_main?['temp']));
-  int? get feelsLikeTemperature => DoubleToInt(KelvinToCelsium(_main?['feels_like']));
+  int? get temperature => KelvinToCelsium(_main?['temp']).round();
+  int? get feelsLikeTemperature =>  KelvinToCelsium(_main?['feels_like']).round();
   int? get pressure => _main?['pressure'];
   int? get humidity => _main?['humidity'];
 
   double? get windSpeed => _wind?['speed'];
   int? get windDegrees => _wind?['deg'];
 
+  String? get countryName => _countryName;
+  String? get cityName => _cityName;
   //constructors
 
-  WeatherModel(){
+  WeatherModel() {
     _weather = {
       'main': 'Please wait',
       'description': 'Please wait',
@@ -51,15 +48,14 @@ class WeatherModel {
     _cityName = '';
   }
 
-  WeatherModel.byJson(Map<String, dynamic> jsonData){
-    try{
+  WeatherModel.byJson(Map<String, dynamic> jsonData) {
+    try {
       _main = jsonData['main'];
       _weather = jsonData['weather'][0] as Map<String, dynamic>;
       _wind = jsonData['wind'];
       _cityName = jsonData['name'];
       _countryName = jsonData['sys']['country'];
-    }
-    catch(exception){
+    } catch (exception) {
       print(exception);
       WeatherModel();
       throw exception;
