@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/src/exporters/widgets_exporter.dart';
 import 'package:weatherapp/src/main_screen/first_main_screen/first_main_screen.dart';
 import 'package:weatherapp/src/main_screen/second_main_screen/second_main_screen.dart';
+import 'package:weatherapp/src/server/weather_model.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -10,6 +12,23 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  WeatherModel currentWeather = WeatherModel();
+
+  void getWeather() async {
+    var tempWeather = WeatherModel.byJson(await getWeatherFromDB());
+    print(currentWeather);
+    setState(() {
+      currentWeather = tempWeather;
+      print(currentWeather);
+    });
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    getWeather();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,16 +43,16 @@ class _MainScreenState extends State<MainScreen> {
         body: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/clear_sky.jpg'),
+                  image: AssetImage(currentWeather.weatherBackground),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             ListView(
-              children: const[
-                FirstMainScreen(),
+              children: [
+                FirstMainScreen(currentWeather),
                 SecondMainScreen(),
               ],
             )
