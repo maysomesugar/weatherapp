@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather/weather.dart';
 import 'package:weatherapp/src/tools/convert_temperature.dart';
-import 'package:flutter_weather_icons/flutter_weather_icons.dart';
 
 class WeatherModel {
   Map<String, dynamic>? _weather;
@@ -12,11 +10,9 @@ class WeatherModel {
 
   //getters
 
-  //=======
-
-  String get mainStatuts => _weather?['main'] ?? 'unknown';
+  String get mainStatus => _weather?['main'] ?? 'unknown';
   String get description => _weather?['description'] ?? 'unknown';
-  IconData get icon => getIconFromCode(_weather?['icon'] ?? '');
+  Image get icon => _getIconFromCode(_weather?['icon']  ?? '');
   int get temperature => KelvinToCelsium(_main?['temp']).round();
   int get feelsLikeTemperature => KelvinToCelsium(_main?['feels_like']).round();
   int get pressure => _main?['pressure'] ?? 0;
@@ -27,6 +23,7 @@ class WeatherModel {
 
   String get countryName => _countryName ?? 'unknown location';
   String get cityName => _cityName ?? '';
+
   //constructors
 
   WeatherModel() {
@@ -62,35 +59,50 @@ class WeatherModel {
       throw exception;
     }
   }
-  IconData getIconFromCode(String code){
-    IconData tempIcon;
 
-    if(code == '01d'){
-      tempIcon = WeatherIcons.wiDaySunny;
+  Image _getIconFromCode(String code){
+    String imagePath;
+
+    switch (code) {
+      case '01d':
+        imagePath = 'assets/weather_status/sunny.png';
+        break;
+      case '01n':
+        imagePath = 'assets/weather_status/moon.png';
+        break;
+      case '11d':
+        imagePath = 'assets/weather_status/thunderstorm.png';
+        break;
+      case '09d':
+      case '10d':
+        imagePath = 'assets/weather_status/rainy_day.png';
+        break;
+      case '13d':
+        imagePath = 'assets/weather_status/snow.png';
+        break;
+      case '50d':
+        imagePath = 'assets/weather_status/haze.png';
+        break;
+      case '02d':
+        imagePath = 'assets/weather_status/clear_sky.png';
+        break;
+      case '02n':
+        imagePath = 'assets/weather_status/cloudy_night.png';
+        break;
+      case '03d':
+      case '03n':
+      case '04d':
+      case '04n':
+        imagePath = 'assets/weather_status/cloud.png';
+        break;
+      default:
+        imagePath = 'assets/weather_status/sunny.png';
+        break;
     }
-    else {
-      tempIcon = WeatherIcons.wiDaySunny;
-    }
-    return tempIcon;
+
+    return Image.asset(
+      imagePath,
+      width: 75,
+    );
   }
-
-// WeatherModel.manually({temperature = 0, clouds = 0, windSpeed = 0,
-//   weatherDescription = '', icon = '', countryName = '', cityName = ''}){
-//   _temperature = temperature;
-//   _clouds = clouds;
-//   _windSpeed = windSpeed;
-//   _weatherDescription = weatherDescription;
-//   _icon = icon;
-//   _countryName = countryName;
-//   _cityName = cityName;
-// }
 }
-
-//TODO:
-/*
-Не удобно работать с классом, изза чего в виджетах получаются длиннае строки с выборкой данных
--нужно сделать пару основных приватных полей и геттерами из них изымать нужные данные
-
-
-
-*/

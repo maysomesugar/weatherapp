@@ -29,37 +29,41 @@ class _FirstMainScreenState extends State<FirstMainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(bottom: 40),
-          child: Text(
-            FirstSymbolToUpperCase(currentWeather.description),
-            style: mainSmallFontStyle,
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 40),
+            child: Text(
+              FirstSymbolToUpperCase(currentWeather.description),
+              style: mainSmallFontStyle,
+            ),
           ),
-        ),
-        Container(
-            margin: const EdgeInsets.only(bottom: 80),
-            child: temperatureBlock(
-              temperature: currentWeather.temperature,
-              currentWeatherIcon: currentWeather.icon,
-            )),
-        Container(
-          margin: const EdgeInsets.only(bottom: 20),
-          child: additionalInfoBlock(
-            humidity: currentWeather.humidity,
-            pressure: currentWeather.pressure,
-            wind: currentWeather.windSpeed,
+          Container(
+              margin: const EdgeInsets.only(bottom: 80),
+              child: temperatureBlock(
+                temperature: currentWeather.temperature,
+                currentWeatherIcon: currentWeather.icon, //currentWeather.icon,
+              )),
+          Container(
+            margin: const EdgeInsets.only(bottom: 20),
+            child: additionalInfoBlock(
+              humidity: currentWeather.humidity,
+              pressure: currentWeather.pressure,
+              wind: currentWeather.windSpeed,
+            ),
           ),
-        ),
-        Container(
-          child: Text(
-            '${currentWeather.cityName}, ${currentWeather.countryName}',
-            style: mainSmallFontStyle,
+          Container(
+            child: Text(
+              '${currentWeather.cityName}, ${currentWeather.countryName}',
+              style: mainSmallFontStyle,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

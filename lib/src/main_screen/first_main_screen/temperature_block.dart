@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:weatherapp/src/exporters/styles_exporter.dart';
-import 'package:weather_icons/weather_icons.dart';
 
-Widget temperatureBlock({required int? temperature, required IconData currentWeatherIcon}) {
-
-  
-
+Widget temperatureBlock({required int? temperature, required Image currentWeatherIcon}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Container(
-        child: Icon(currentWeatherIcon),
+        child: currentWeatherIcon,
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
